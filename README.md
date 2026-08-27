@@ -9,7 +9,7 @@ Projeto desenvolvido para o componente curricular **Projeto Aplicado II** do cur
 ## 👥 Integrantes do Grupo
 
 * **Marcos Costa Lima Araujo** — RA: 10746213
-* **Francisco Dantas** — RA: [Inserir RA]
+* **Francisco Dantas** — RA: 10752131
 * **Leonardo Gaspar Saheb** — RA: 10402213
 
 ---
