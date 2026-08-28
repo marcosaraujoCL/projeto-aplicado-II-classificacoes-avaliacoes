@@ -1,12 +1,12 @@
-# Projeto Aplicado II — Classificação Automatizada de Reviews e Geração de Game Insights a partir de Avaliações da Steam com Machine Learning
+# Projeto Aplicado II — Classificação Automatizada de Reviews da Steam com NLP e Machine Learning
 
 Projeto desenvolvido para o componente curricular **Projeto Aplicado II** do curso de **Tecnologia em Banco de Dados** da **Universidade Presbiteriana Mackenzie**.
 
-> 🚧 **Status do Projeto:** Em Desenvolvimento — Etapa 1 (Kick-off)
+>  **Status do Projeto:** Em Desenvolvimento — Etapa 1 (Kick-off)
 
 ---
 
-## 👥 Integrantes do Grupo
+##  Integrantes do Grupo
 
 **Grupo:** Hash
 **Empresa:** GameInsight Studios
@@ -14,10 +14,11 @@ Projeto desenvolvido para o componente curricular **Projeto Aplicado II** do cur
 * **Marcos Costa Lima Araujo** — RA: 10746213
 * **Francisco Freitas Dantas** — RA: 10752131
 * **Leonardo Gaspar Saheb** — RA: 10402213
+* **André Cardoso Ramires** — RA: 10752544
 
 ---
 
-## 📌 Visão Geral
+##  Visão Geral
 
 A **GameInsight Studios** é uma empresa fictícia voltada à análise de dados do mercado de jogos eletrônicos, com o objetivo de transformar informações e opiniões da comunidade em **Game Insights** que possam contribuir para a compreensão da experiência e da percepção do público.
 
@@ -29,54 +30,64 @@ A partir dessa classificação, a GameInsight Studios busca gerar informações 
 
 ---
 
-## 🎯 Objetivos e Metas
+##  Objetivos e Metas
 
 ### Objetivo Geral
 
-Desenvolver uma solução em **Ciência de Dados**, utilizando **Processamento de Linguagem Natural (NLP)** e **Machine Learning Supervisionado**, para classificar automaticamente as avaliações da Steam entre **positivas e negativas**, permitindo à GameInsight Studios transformar os feedbacks da comunidade em **Game Insights** sobre a percepção do público.
+Desenvolver uma solução para analisar e classificar avaliações de usuários da Steam, utilizando técnicas de **Processamento de Linguagem Natural (NLP)** e **Machine Learning**, com o objetivo de identificar recomendações positivas e negativas e facilitar a análise da opinião dos jogadores.
 
 ### Objetivos Específicos
 
-* Realizar o pré-processamento e normalização dos textos utilizando Python;
-* Converter os textos em dados numéricos utilizando a técnica **TF-IDF**;
-* Treinar e comparar modelos de classificação supervisionada, como **Multinomial Naive Bayes, Regressão Logística e Random Forest**;
-* Avaliar os modelos utilizando **Acurácia, Precisão, Recall, F1-Score e Matriz de Confusão**;
-* Identificar padrões e características presentes nas avaliações positivas e negativas;
-* Elaborar uma proposta de painel conceitual para apresentar os **Game Insights** gerados a partir das avaliações da comunidade.
+* Preparar e organizar os textos das avaliações para a análise;
+* Realizar o tratamento dos dados textuais, incluindo limpeza e normalização;
+* Transformar os textos em dados que possam ser utilizados pelos modelos de classificação;
+* Testar e comparar modelos de Machine Learning para classificar as avaliações;
+* Avaliar o desempenho dos modelos utilizando métricas como Acurácia, Precisão, Recall e F1-Score;
+* Analisar os resultados e identificar padrões presentes nas avaliações dos usuários;
+* Organizar os resultados de forma que possam auxiliar na compreensão da opinião dos jogadores.
+
 
 ### Metas do Projeto
 
-* Alcançar **Acurácia e F1-Score superiores a 80%** na classificação das avaliações;
-* Obter um **Recall elevado na identificação de avaliações negativas**, buscando minimizar falsos negativos;
-* Transformar os resultados da classificação em informações que possam contribuir para a compreensão da percepção e experiência do público.
-
+* Preparar uma base de avaliações adequada para as etapas de análise e modelagem;
+* Desenvolver um processo de classificação das avaliações entre recomendações positivas e negativas;
+* Comparar o desempenho dos modelos utilizados;
+* Buscar um F1-Score de pelo menos 80% no modelo selecionado;
+* Documentar as etapas realizadas e disponibilizar o código e os resultados no repositório do projeto.
 ---
 
-## 📊 Base de Dados
+##  Base de Dados
 
-O projeto utiliza o **Steam Dataset 2025: Multi-Modal Gaming Analytics Platform**, composto por **37.778 avaliações de usuários**.
+O projeto utiliza o **Steam Dataset 2025: Multi-Modal Gaming Analytics Platform**, obtido a partir de dados públicos relacionados às avaliações de usuários da Steam.
 
-A principal variável utilizada será:
+Após a seleção e preparação inicial realizada pelo grupo, foi definido um recorte com **18.290 avaliações**, considerando avaliações em **inglês** realizadas entre **2010 e 2025**.
+
+As principais informações utilizadas são:
 
 * `review` → texto escrito pelo usuário;
-* `voted_up` → indica se a avaliação é positiva (`True`) ou negativa (`False`).
+* `voted_up` → indica se o usuário recomendou ou não o jogo;
+* `language` → idioma da avaliação;
+* `timestamp_created` → data de criação da avaliação;
+* `votes_up` → quantidade de votos recebidos pela avaliação;
+* `steam_purchase` → informação relacionada à compra do jogo na Steam.
 
-A base apresenta aproximadamente:
+Na base final:
 
-* **75,56%** de avaliações positivas;
-* **24,44%** de avaliações negativas.
+* **13.887 avaliações (75,93%)** são recomendações positivas;
+* **4.403 avaliações (24,07%)** são recomendações negativas;
+* não foram encontradas avaliações duplicadas;
+* a média é de aproximadamente **77 palavras por avaliação**.
 
-A Steam é utilizada **exclusivamente como fonte dos dados analisados**, não sendo a GameInsight Studios uma empresa vinculada ou pertencente à plataforma.
-
+A coluna `review` será utilizada como principal fonte para a análise dos textos, enquanto `voted_up` será utilizada como referência para a classificação das avaliações.
 ---
 
-## 🧠 Tecnologias e Metodologia
+##  Tecnologias e Metodologia
 
 O projeto será desenvolvido em **Python**, utilizando técnicas de:
 
 * Análise Exploratória de Dados;
 * Processamento de Linguagem Natural (NLP);
-* Vetorização TF-IDF;
+* Vetorização de textos com TF-IDF;
 * Machine Learning Supervisionado.
 
 Entre os modelos inicialmente considerados estão:
@@ -89,9 +100,9 @@ Os modelos serão avaliados utilizando métricas como **Acurácia, Precisão, Re
 
 ---
 
-## 💻 Execução
+##  Execução
 
-O projeto está desenvolvido em um **Jupyter Notebook (`.ipynb`)**.
+O projeto utiliza **Python e Jupyter Notebook** para a preparação e análise dos dados.
 
 Arquivo principal:
 
@@ -107,23 +118,44 @@ Para executar:
 3. Selecione um ambiente **Python 3.12**;
 4. Execute as células do notebook em ordem.
 
-As principais bibliotecas utilizadas podem ser instaladas com:
+---
 
-```bash
-pip install pandas
-```
+##  Estrutura do Projeto
+
+```text
+projeto-aplicado-II-classificacoes-avaliacoes/
+│
+├── Data/
+│   └── steam_2025_5k-dataset-reviews_20250901.json.gz
+│
+├── Docs/
+│   └── Relatorio_Tecnico_GameInsight.pdf
+│
+├── Notebooks/
+│   └── 01_analise_exploratoria.ipynb
+│
+├── .gitignore
+└── README.md
 
 ---
 
-## 📅 Cronograma
+##  Cronograma
 
-* [ ] **Etapa 1:** Kick-off
+* [x] **Etapa 1:** Kick-off
 * [ ] **Etapa 2:** Análise Exploratória e Pré-processamento
 * [ ] **Etapa 3:** Machine Learning e Avaliação dos Modelos
 * [ ] **Etapa 4:** Relatório Final e Apresentação
 
 ---
 
-## 📄 Licença
+##  Relatório
 
-Este projeto é desenvolvido exclusivamente para fins acadêmicos e educacionais.
+O relatório técnico do projeto está disponível na pasta `Docs` do repositório.
+
+Arquivo:
+
+`Docs/Relatorio_Tecnico_GameInsight.pdf`
+
+##  Licença
+
+Este projeto foi desenvolvido para fins acadêmicos e educacionais como parte do componente curricular **Projeto Aplicado II**, da Universidade Presbiteriana Mackenzie.
