@@ -59,20 +59,6 @@ Desenvolver uma solução para analisar e classificar avaliações de usuários 
 * Documentar as etapas realizadas e disponibilizar o código e os resultados no repositório do projeto.
 ---
 
-##  Base de Dados
-
-O projeto utiliza o **Steam Dataset 2025: Multi-Modal Gaming Analytics Platform**, obtido a partir de dados públicos relacionados às avaliações de usuários da Steam.
-
-Após a seleção e preparação inicial realizada pelo grupo, foi definido um recorte com **18.290 avaliações**, considerando avaliações em **inglês** realizadas entre **2010 e 2025**.
-
-As principais informações utilizadas são:
-
-* `review` → texto escrito pelo usuário;
-* `voted_up` → indica se o usuário recomendou ou não o jogo;
-* `language` → idioma da avaliação;
-* `timestamp_created` → data de criação da avaliação;
-* `votes_up` → quantidade de votos recebidos pela avaliação;
-* `steam_purchase` → informação relacionada à compra do jogo na Steam.
 
 ## Base de Dados
 
