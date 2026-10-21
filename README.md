@@ -286,6 +286,9 @@ python -m pip install pandas numpy matplotlib seaborn scikit-learn
 
 ## 9. Estrutura do Projeto
 
+O projeto está organizado em diretórios para separar os dados utilizados, os notebooks de análise e o relatório técnico.
+
+```text
 projeto-aplicado-II-classificacoes-avaliacoes/
 │
 ├── Data/
@@ -300,6 +303,17 @@ projeto-aplicado-II-classificacoes-avaliacoes/
 │
 ├── .gitignore
 └── README.md
+```
+
+### Descrição dos Diretórios
+
+- **`Data/`**: armazena o conjunto de dados utilizado no projeto.
+- **`Docs/`**: contém o relatório técnico em PDF.
+- **`Notebooks/`**: reúne os notebooks Python utilizados na análise exploratória, no pré-processamento, na modelagem e na avaliação dos resultados.
+- **`.gitignore`**: define arquivos e diretórios que devem ser ignorados pelo Git.
+- **`README.md`**: apresenta a descrição, os objetivos, a metodologia e os resultados do projeto.
+
+**Observação:** a estrutura acima deve corresponder aos arquivos efetivamente presentes no repositório GitHub. Caso algum arquivo ou diretório tenha nome ou localização diferente, atualize a representação para refletir a estrutura real.
 
 ---
 
