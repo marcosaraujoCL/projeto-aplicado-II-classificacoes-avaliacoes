@@ -295,7 +295,7 @@ projeto-aplicado-II-classificacoes-avaliacoes/
 │   └── steam_2025_5k-dataset-reviews_20250901.json.gz
 │
 ├── Docs/
-│   └── Relatorio_Tecnico_GameInsight.pdf
+│   └── Relatório_Técnico_GameInsight.pdf
 │
 ├── Notebooks/
 │   ├── 01_eda_preprocessamento.ipynb
