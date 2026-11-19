@@ -6,12 +6,6 @@
 
 Projeto desenvolvido pelo **Grupo Hash**, para o componente curricular **Projeto Aplicado II**, do curso de **Tecnologia em Banco de Dados** da **Universidade Presbiteriana Mackenzie — 2026**.
 
-<p align="center">
-  <a href="https://frncisc0.github.io/projeto-aplicado-II-classificacoes-avaliacoes/">
-    <strong>ACESSAR APRESENTAÇÃO</strong>
-  </a>
-</p>
-
 ---
 
 ## Sobre o projeto
