@@ -198,7 +198,7 @@ São 12 slides em formato 16:9, resolução-base de 1920 × 1080, com animaçõe
 - Fontes locais;
 - Funcionamento sem dependências externas.
 
-**Acessar:** [Beyond the Reviews — Apresentação](https://frncisc0.github.io/projeto-aplicado-II-classificacoes-avaliacoes/)
+**Acessar:** [Beyond the Reviews — Apresentação](https://marcosaraujocl.github.io/projeto-aplicado-II-classificacoes-avaliacoes/Docs/)
 
 ---
 
