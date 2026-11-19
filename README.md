@@ -1,8 +1,30 @@
-# Projeto Aplicado II — Classificação Automatizada de Reviews da Steam com NLP e Machine Learning
+# Beyond the Reviews — GameInsight Studios
 
-Projeto desenvolvido para o componente curricular **Projeto Aplicado II**, do curso de **Tecnologia em Banco de Dados** da **Universidade Presbiteriana Mackenzie**.
+### Transformando opiniões em inteligência.
 
-> **Status do projeto:** Concluído — preparação dos dados, aplicação dos métodos analíticos, avaliação dos modelos, definição do produto analítico e elaboração do relatório técnico.
+**Classificação Automatizada de Reviews da Steam com Processamento de Linguagem Natural e Machine Learning**
+
+Projeto desenvolvido pelo **Grupo Hash**, para o componente curricular **Projeto Aplicado II**, do curso de **Tecnologia em Banco de Dados** da **Universidade Presbiteriana Mackenzie — 2026**.
+
+<p align="center">
+  <a href="https://frncisc0.github.io/projeto-aplicado-II-classificacoes-avaliacoes/">
+    <strong>ACESSAR APRESENTAÇÃO</strong>
+  </a>
+</p>
+
+---
+
+## Sobre o projeto
+
+A **GameInsight Studios** é uma empresa fictícia voltada à análise de dados do mercado de jogos eletrônicos. Sua proposta é transformar grandes volumes de opiniões da comunidade em informações estruturadas que contribuam para compreender a experiência e a percepção dos jogadores.
+
+Todos os dias, plataformas digitais acumulam milhares de avaliações escritas em linguagem natural. Embora esses comentários contenham informações importantes sobre a experiência dos usuários, analisar manualmente esse volume de dados é um desafio.
+
+O projeto **Beyond the Reviews** busca enfrentar esse desafio por meio de técnicas de Processamento de Linguagem Natural (NLP) e Machine Learning, desenvolvendo um modelo capaz de classificar automaticamente avaliações de jogos da Steam em duas categorias: positivas e negativas.
+
+Mais do que identificar recomendações, a proposta é demonstrar como a tecnologia pode transformar opiniões em informação e apoiar análises sobre satisfação e insatisfação dos jogadores.
+
+> A tecnologia classifica as opiniões. A análise transforma os resultados em conhecimento.
 
 ---
 
@@ -18,229 +40,197 @@ Projeto desenvolvido para o componente curricular **Projeto Aplicado II**, do cu
 
 ---
 
-## 1. Visão Geral
+## Objetivos
 
-A **GameInsight Studios** é uma empresa fictícia voltada à análise de dados do mercado de jogos eletrônicos, com o objetivo de transformar informações e opiniões da comunidade em *Game Insights* que contribuam para a compreensão da experiência e da percepção dos jogadores.
+### Objetivo geral
 
-O projeto utiliza avaliações públicas da **Steam** como fonte de dados. Como essas avaliações são escritas em linguagem natural, técnicas de Ciência de Dados podem ajudar a identificar padrões de opinião e facilitar a análise de grandes volumes de comentários.
+Desenvolver uma solução de classificação automatizada de avaliações da Steam, utilizando técnicas de Processamento de Linguagem Natural e Machine Learning.
 
-A proposta consiste em desenvolver uma solução utilizando **Processamento de Linguagem Natural (NLP)** e **Machine Learning** para classificar automaticamente as avaliações dos jogadores em recomendações positivas e negativas.
+### Objetivos específicos
 
-A Steam é utilizada exclusivamente como fonte de dados. O projeto possui finalidade acadêmica e não representa uma solução oficial da plataforma nem uma parceria com a Valve Corporation.
+- Preparar e organizar os textos das avaliações;
+- Realizar limpeza, normalização e deduplicação dos dados;
+- Transformar os textos em representações numéricas utilizando TF-IDF;
+- Treinar e comparar modelos de Machine Learning;
+- Avaliar o desempenho por meio de métricas de classificação;
+- Identificar padrões associados às avaliações positivas e negativas.
 
----
+### Meta estabelecida
 
-## 2. Objetivos e Metas
-
-### 2.1. Objetivo Geral
-
-Desenvolver uma solução para analisar e classificar avaliações de usuários da Steam, utilizando técnicas de Processamento de Linguagem Natural (NLP) e Machine Learning.
-
-### 2.2. Objetivos Específicos
-
-- Preparar e organizar os textos das avaliações para análise;
-- Realizar limpeza e normalização dos dados textuais;
-- Transformar os textos em representações numéricas;
-- Testar e comparar modelos de Machine Learning;
-- Avaliar o desempenho utilizando acurácia, precisão, recall e F1-Score;
-- Identificar padrões presentes nas avaliações;
-- Investigar o desempenho dos modelos na identificação das classes positiva e negativa.
-
-### 2.3. Meta do Projeto
-
-Buscar um F1-Score Macro de pelo menos 80% no modelo selecionado.
+Alcançar **F1 Macro igual ou superior a 80%** no modelo selecionado.
 
 **Resultado:** meta alcançada, com F1 Macro de 82,97% no conjunto de teste.
 
 ---
 
-## 3. Base de Dados
+## Base de dados
 
-O projeto utiliza o conjunto de dados **Steam Dataset 2025: Multi-Modal Gaming Analytics Platform**.
+O projeto utiliza o conjunto de dados **Steam Dataset 2025: Multi-Modal Gaming Analytics Platform**, disponibilizado publicamente por Vintagedon.
 
 Foi selecionado um recorte de avaliações em inglês, publicadas entre 2010 e 2025.
 
-### 3.1. Composição da Base
+### Composição da base
 
-- Avaliações selecionadas inicialmente: 19.487;
-- Avaliações sem conteúdo após a limpeza removidas: 262;
-- Registros removidos durante a deduplicação e tratamento de classificações conflitantes: 528;
-- Total utilizado na modelagem: 18.697;
-- Recomendações positivas: 13.917 (74,43%);
-- Recomendações negativas: 4.780 (25,57%).
+| Descrição | Quantidade |
+|---|---:|
+| Avaliações inicialmente selecionadas | 19.487 |
+| Avaliações vazias removidas | 262 |
+| Registros removidos na deduplicação e tratamento de classificações conflitantes | 528 |
+| **Base final utilizada na modelagem** | **18.697** |
 
-Após o tratamento, não permaneceram textos duplicados na base final.
+### Distribuição das classificações
 
-### 3.2. Principais Variáveis
+| Classe | Quantidade | Proporção |
+|---|---:|---:|
+| Positivas | 13.917 | 74,43% |
+| Negativas | 4.780 | 25,57% |
+| **Total** | **18.697** | **100%** |
 
-- `review` — texto escrito pelo usuário;
-- `voted_up` — indica se o usuário recomendou o jogo;
-- `language` — idioma da avaliação;
-- `timestamp_created` — data de criação da avaliação;
-- `votes_up` — quantidade de votos recebidos;
-- `steam_purchase` — informação relacionada à compra do jogo na Steam.
+### Principais variáveis
 
-A variável `review` foi utilizada como fonte principal para a análise textual, enquanto `voted_up` foi utilizada como variável-alvo.
+- `review`: texto escrito pelo usuário;
+- `voted_up`: classificação da recomendação, utilizada como variável-alvo;
+- `language`: idioma da avaliação;
+- `timestamp_created`: data de criação da avaliação;
+- `votes_up`: quantidade de votos recebidos;
+- `steam_purchase`: informação relacionada à compra do jogo na Steam.
 
 ---
 
-## 4. Tecnologias e Metodologia
+## Tecnologias e metodologia
 
-O projeto foi desenvolvido em **Python**, utilizando Jupyter Notebook para preparação, análise e modelagem dos dados.
+O desenvolvimento foi realizado em Python, utilizando Jupyter Notebook para preparação, análise e modelagem dos dados.
 
-### 4.1. Principais Bibliotecas
+### Tecnologias utilizadas
 
-- `pandas` — organização e análise dos dados;
-- `numpy` — operações numéricas;
-- `matplotlib` — criação de gráficos;
-- `seaborn` — visualização de dados;
-- `scikit-learn` — TF-IDF, treinamento e avaliação dos modelos;
-- `gzip` e `json` — leitura dos dados;
-- `pathlib` — organização dos caminhos dos arquivos;
-- `re` — limpeza e normalização dos textos.
+- Python;
+- Jupyter Notebook;
+- Pandas;
+- NumPy;
+- Matplotlib;
+- Seaborn;
+- Scikit-learn;
+- TF-IDF.
 
-### 4.2. Etapas Metodológicas
+### Etapas metodológicas
 
 1. Análise Exploratória de Dados;
 2. Seleção e preparação da base;
 3. Limpeza, normalização e deduplicação dos textos;
 4. Transformação textual utilizando TF-IDF;
-5. Separação dos dados em conjuntos de treinamento e teste;
+5. Separação dos dados em treinamento e teste;
 6. Treinamento e comparação dos modelos;
-7. Avaliação por métricas de desempenho;
-8. Ajuste de parâmetros e do limiar de classificação;
-9. Análise das matrizes de confusão e do desempenho por classe.
+7. Validação cruzada estratificada;
+8. Avaliação por métricas de desempenho;
+9. Ajuste de parâmetros e do limiar de classificação;
+10. Análise das matrizes de confusão e dos resultados por classe.
 
-### 4.3. Modelos Avaliados
+### Modelos avaliados
 
 - Multinomial Naive Bayes;
-- Complement Naive Bayes;
 - Regressão Logística;
 - Random Forest.
 
+A Regressão Logística foi selecionada para a etapa final de avaliação, após os experimentos e ajustes realizados.
+
 ---
 
-## 5. Resultados
+## Resultados
 
-### 5.1. Comparação Inicial dos Modelos
+### Modelo final
 
-Na avaliação inicial, a Regressão Logística apresentou a maior acurácia, com 86,84%.
+**Regressão Logística ajustada — limiar de classificação 0,45.**
 
-| Modelo | Acurácia | F1-Score da classe positiva |
-|---|---:|---:|
-| Multinomial Naive Bayes | 84,09% | 90,16% |
-| Regressão Logística | 86,84% | 91,62% |
-| Random Forest | 83,24% | 89,63% |
-
-### 5.2. Ajuste dos Modelos
-
-Foram realizadas etapas de ajuste de parâmetros e utilização de pesos de classe para melhorar a identificação das avaliações negativas.
-
-A Regressão Logística apresentou F1 Macro de 82,31% na avaliação ajustada com limiar padrão. Na validação cruzada, o resultado foi de 82,96%.
-
-Posteriormente, foi avaliado o limiar de classificação, sendo selecionado o valor de **0,45**.
-
-### 5.3. Resultado do Modelo Final
-
-A Regressão Logística ajustada, com limiar de 0,45, apresentou os seguintes resultados no conjunto de teste:
+Resultados obtidos no conjunto de teste:
 
 | Métrica | Resultado |
 |---|---:|
-| Acurácia | 86,74% |
-| F1 Macro | 82,97% |
+| Acurácia | **86,74%** |
+| F1 Macro | **82,97%** |
 | Precisão da classe negativa | 72,46% |
 | Recall da classe negativa | 77,62% |
 | F1-Score da classe negativa | 74,95% |
+| Recall da classe positiva | 89,87% |
+| F1-Score da classe positiva | 90,98% |
 
-O modelo superou a meta estabelecida de 80% de F1 Macro.
+### Matriz de confusão
 
-### 5.4. Interpretação dos Resultados
+| Classe real / prevista | Prevista negativa | Prevista positiva |
+|---|---:|---:|
+| Real negativa | 742 | 214 |
+| Real positiva | 282 | 2.502 |
 
-Os resultados demonstram que a Regressão Logística apresentou o melhor desempenho geral entre os modelos avaliados após os ajustes.
+### Interpretação
 
-Apesar do resultado positivo, o modelo ainda apresenta maior dificuldade na identificação das avaliações negativas.
+A Regressão Logística ajustada apresentou desempenho geral satisfatório, alcançando F1 Macro de 82,97% e superando a meta estabelecida de 80%.
 
-A análise dos termos associados às classificações negativas identificou palavras e expressões como `boring`, `not worth`, `waste`, `terrible` e `refund`.
+Entretanto, o modelo ainda apresenta maior dificuldade na identificação das avaliações negativas, demonstrando oportunidades de melhoria.
 
-Esses resultados demonstram o potencial da solução para a classificação automatizada de avaliações e indicam oportunidades de melhoria.
+A análise dos termos associados às classificações identificou expressões como `boring`, `not worth`, `waste`, `terrible` e `refund` entre os termos associados à classe negativa.
 
----
-
-## 6. Produto Analítico e Modelo de Negócios
-
-A GameInsight Studios propõe uma solução de classificação automatizada de avaliações da Steam, utilizando NLP e Machine Learning.
-
-O produto busca facilitar a análise de grandes volumes de comentários e contribuir para a identificação de padrões de satisfação e insatisfação dos jogadores.
-
-Como evolução futura, a solução poderá incluir um painel analítico para apresentar a distribuição das avaliações, comparar indicadores entre jogos e facilitar a identificação de possíveis pontos de insatisfação.
-
-A proposta de negócio poderá ser direcionada a desenvolvedoras e publicadoras de jogos interessadas em compreender melhor as opiniões dos jogadores.
+Essas associações representam padrões identificados pelo modelo e não relações de causa e efeito.
 
 ---
 
-## 7. Storytelling
+## Produto analítico e aplicação
 
-O projeto parte do desafio de analisar grandes volumes de avaliações textuais publicadas na Steam.
+A GameInsight Studios propõe uma solução que utiliza classificação automatizada para organizar grandes volumes de avaliações e facilitar a identificação de padrões de satisfação e insatisfação.
 
-A pergunta analítica que orientou o trabalho foi:
+A solução poderá apoiar desenvolvedoras e publicadoras de jogos em atividades como:
 
-**É possível classificar automaticamente as avaliações dos jogadores como recomendações positivas ou negativas utilizando técnicas de Machine Learning?**
+- Organização de grandes volumes de avaliações;
+- Identificação de padrões nas opiniões dos jogadores;
+- Análise de satisfação e insatisfação;
+- Identificação de possíveis pontos de atenção na experiência dos usuários.
 
-Para responder a essa questão, foram utilizadas avaliações em inglês, publicadas entre 2010 e 2025. Após as etapas de limpeza e deduplicação, foram mantidas 18.697 avaliações para a modelagem.
+Como evolução futura, propõe-se o desenvolvimento de um dashboard analítico para apresentar indicadores, distribuições e comparações entre jogos.
 
-Os textos foram transformados utilizando TF-IDF e utilizados no treinamento de diferentes modelos de classificação.
-
-A Regressão Logística ajustada apresentou acurácia de 86,74% e F1 Macro de 82,97%, superando a meta estabelecida.
-
-A solução demonstrou potencial para apoiar empresas do setor de jogos na organização e análise das opiniões dos jogadores, embora ainda existam oportunidades de melhoria na identificação das avaliações negativas.
-
----
-
-## 8. Execução
-
-O projeto utiliza Python e Jupyter Notebook para a preparação, análise e modelagem dos dados.
-
-### 8.1. Notebooks
-
-**1. `01_eda_preprocessamento.ipynb`**
-
-Responsável pela análise exploratória, seleção da base, limpeza, normalização e preparação dos dados.
-
-**2. `02_modelagem_avaliacao.ipynb`**
-
-Responsável pelo treinamento dos modelos, comparação dos resultados, avaliação das métricas e análise das matrizes de confusão.
-
-### 8.2. Como Executar
-
-1. Abra o projeto no VS Code;
-2. Abra o notebook `01_eda_preprocessamento.ipynb`;
-3. Selecione um ambiente Python compatível;
-4. Execute as células em ordem;
-5. Em seguida, abra o notebook `02_modelagem_avaliacao.ipynb`;
-6. Execute as células em ordem, verificando os caminhos dos arquivos e as variáveis necessárias.
-
-### 8.3. Instalação das Bibliotecas
-
-Execute o comando abaixo no terminal:
-
-```bash
-python -m pip install pandas numpy matplotlib seaborn scikit-learn
-```
+**Observação:** o dashboard é uma possibilidade futura e não faz parte das funcionalidades implementadas neste projeto.
 
 ---
 
-## 9. Estrutura do Projeto
+## Apresentação do projeto
+
+A apresentação **Beyond the Reviews** foi desenvolvida em HTML, CSS e JavaScript, com identidade visual própria da GameInsight Studios.
+
+São 12 slides em formato 16:9, resolução-base de 1920 × 1080, com animações e navegação interativa.
+
+**Recursos da apresentação:**
+
+- Navegação por teclado e controles na tela;
+- Animações sincronizadas por etapas;
+- Modo de tela cheia;
+- Gráficos e elementos visuais em SVG e HTML;
+- Fontes locais;
+- Funcionamento sem dependências externas.
+
+**Acessar:** [Beyond the Reviews — Apresentação](https://frncisc0.github.io/projeto-aplicado-II-classificacoes-avaliacoes/)
+
+---
+
+## Estrutura do repositório
 
 ```text
 projeto-aplicado-II-classificacoes-avaliacoes/
 │
 ├── Data/
+│   ├── reviews_modelo.csv
+│   ├── steam_2025_5k-dataset-games_20250831.json.gz
 │   └── steam_2025_5k-dataset-reviews_20250901.json.gz
 │
 ├── Docs/
-│   └── Relatorio_Tecnico_GameInsight.pdf
+│   ├── index.html
+│   ├── README.md
+│   ├── DIVERGENCIAS.md
+│   ├── Relatório_Técnico_GameInsight.pdf
+│   ├── assets/
+│   ├── css/
+│   ├── js/
+│   ├── referencias/
+│   └── Figuras/
 │
 ├── Notebooks/
+│   ├── 01_analise_exploratoria.ipynb
 │   ├── 01_eda_preprocessamento.ipynb
 │   └── 02_modelagem_avaliacao.ipynb
 │
@@ -248,39 +238,73 @@ projeto-aplicado-II-classificacoes-avaliacoes/
 └── README.md
 ```
 
-A estrutura acima deve corresponder aos arquivos efetivamente presentes no repositório.
+A pasta `Docs` reúne os materiais documentais e a apresentação HTML. Ela será utilizada como fonte de publicação do GitHub Pages após a configuração correspondente.
 
 ---
 
-## 10. Cronograma
+## Como executar os notebooks
 
-- [x] Etapa 1: Kick-off e definição do projeto;
-- [x] Etapa 2: Análise Exploratória e Pré-processamento;
-- [x] Etapa 3: Aplicação dos métodos analíticos, modelagem e avaliação;
-- [x] Etapa 4: Consolidação do relatório final e preparação da entrega.
+O projeto utiliza Python e Jupyter Notebook.
+
+### Instalação das bibliotecas
+
+No terminal, execute:
+
+```bash
+python -m pip install pandas numpy matplotlib seaborn scikit-learn
+```
+
+### Execução
+
+1. Clone ou baixe o repositório;
+2. Abra o projeto no VS Code ou Jupyter Notebook;
+3. Configure um ambiente Python compatível;
+4. Abra o notebook `01_eda_preprocessamento.ipynb`;
+5. Execute as células em ordem;
+6. Abra o notebook `02_modelagem_avaliacao.ipynb`;
+7. Execute as células em ordem, verificando os caminhos dos arquivos.
 
 ---
 
-## 11. Relatório Técnico
+## Relatório técnico
 
-O relatório técnico apresenta o problema, os objetivos, a metodologia, a preparação dos dados, os modelos avaliados, os resultados obtidos, a proposta de produto analítico, o modelo de negócios e o storytelling.
+O relatório técnico apresenta o desenvolvimento completo do projeto, incluindo:
 
-Arquivo: `Docs/Relatorio_Tecnico_GameInsight.pdf`
+- Contextualização do problema;
+- Objetivos;
+- Preparação e análise dos dados;
+- Metodologia;
+- Modelos avaliados;
+- Resultados e métricas;
+- Produto analítico;
+- Modelo de negócios;
+- Storytelling.
+
+**Arquivo:** `Docs/Relatório_Técnico_GameInsight.pdf`
 
 ---
 
-## 12. Referências
+## Referências
 
 **VINTAGEDON.** *Steam Dataset 2025: Multi-Modal Gaming Analytics Platform*. GitHub, 2025.
 
-Repositório de origem dos dados:
-
+Fonte dos dados:  
 https://github.com/vintagedon/steam-dataset-2025
 
 ---
 
-## 13. Licença e Finalidade
+## Considerações finais
 
-Este projeto foi desenvolvido para fins acadêmicos e educacionais como parte do componente curricular Projeto Aplicado II, do curso de Tecnologia em Banco de Dados da Universidade Presbiteriana Mackenzie.
+O projeto demonstrou a aplicação de técnicas de Processamento de Linguagem Natural e Machine Learning na classificação automatizada de avaliações de jogos.
 
-A GameInsight Studios é fictícia, e a análise utiliza avaliações públicas da Steam de forma independente.
+A solução alcançou a meta de F1 Macro estabelecida, evidenciando o potencial da análise textual para transformar opiniões em informações estruturadas.
+
+Os resultados também demonstram que a avaliação de modelos deve considerar o desempenho individual das classes, e não apenas a acurácia geral.
+
+A GameInsight Studios é fictícia. As avaliações públicas da Steam foram utilizadas exclusivamente como fonte de dados para fins acadêmicos. O projeto não possui parceria oficial com a Steam ou a Valve Corporation.
+
+---
+
+**Projeto Aplicado II — 2026**  
+**Grupo Hash | GameInsight Studios**  
+Universidade Presbiteriana Mackenzie
