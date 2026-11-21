@@ -4,7 +4,27 @@
 
 **Classificação Automatizada de Reviews da Steam com Processamento de Linguagem Natural e Machine Learning**
 
-Projeto desenvolvido pelo **Grupo Hash**, para o componente curricular **Projeto Aplicado II**, do curso de **Tecnologia em Banco de Dados** da **Universidade Presbiteriana Mackenzie — 2026**.
+Projeto desenvolvido pelo **Grupo Hash**, para o componente curricular **Projeto Aplicado II – Banco de Dados**, da **Universidade Presbiteriana Mackenzie — 2026**.
+
+---
+
+## Vídeo da apresentação
+
+[![Beyond the Reviews — Vídeo da apresentação](https://img.youtube.com/vi/EG7y2NOoLKQ/maxresdefault.jpg)](https://youtu.be/EG7y2NOoLKQ)
+
+▶️ **Assistir no YouTube:** https://youtu.be/EG7y2NOoLKQ
+
+---
+
+## Entregas do projeto
+
+| Entrega | Acesso |
+|---|---|
+| Relatório técnico (PDF) | [Docs/Relatório_Técnico_GameInsight.pdf](Docs/Relat%C3%B3rio_T%C3%A9cnico_GameInsight.pdf) |
+| Apresentação do storytelling (HTML, 12 slides) | [Beyond the Reviews — Apresentação](https://marcosaraujocl.github.io/projeto-aplicado-II-classificacoes-avaliacoes/Docs/) |
+| Vídeo da apresentação (YouTube) | [youtu.be/EG7y2NOoLKQ](https://youtu.be/EG7y2NOoLKQ) |
+| Notebooks (código e análises) | [Notebooks/](Notebooks/) |
+| Dados | [Data/](Data/) |
 
 ---
 
@@ -125,11 +145,24 @@ O desenvolvimento foi realizado em Python, utilizando Jupyter Notebook para prep
 - Regressão Logística;
 - Random Forest.
 
+### Ajustes aplicados
+
+Como a base possui mais avaliações positivas do que negativas, foram aplicados ajustes voltados à identificação das avaliações negativas, todos definidos apenas com os dados de treinamento, por validação cruzada estratificada:
+
+- pesos de classe balanceados (Regressão Logística e Random Forest);
+- uso do Complement Naive Bayes;
+- busca de parâmetros;
+- ajuste do limiar de decisão da Regressão Logística.
+
 A Regressão Logística foi selecionada para a etapa final de avaliação, após os experimentos e ajustes realizados.
 
 ---
 
 ## Resultados
+
+### Modelo de referência
+
+Para saber se os resultados são realmente bons, foi criado um modelo que sempre classifica as avaliações como positivas. Ele alcançou acurácia de 74,44%, mas F1 Macro de apenas 42,67%, pois não identifica nenhuma avaliação negativa.
 
 ### Modelo final
 
@@ -158,7 +191,7 @@ Resultados obtidos no conjunto de teste:
 
 A Regressão Logística ajustada apresentou desempenho geral satisfatório, alcançando F1 Macro de 82,97% e superando a meta estabelecida de 80%.
 
-Entretanto, o modelo ainda apresenta maior dificuldade na identificação das avaliações negativas, demonstrando oportunidades de melhoria.
+Entretanto, o modelo ainda apresenta maior dificuldade na identificação das avaliações negativas: o F1-Score dessa classe (74,95%) ficou abaixo de 80%, o que demonstra oportunidades de melhoria.
 
 A análise dos termos associados às classificações identificou expressões como `boring`, `not worth`, `waste`, `terrible` e `refund` entre os termos associados à classe negativa.
 
@@ -200,6 +233,8 @@ São 12 slides em formato 16:9, resolução-base de 1920 × 1080, com animaçõe
 
 **Acessar:** [Beyond the Reviews — Apresentação](https://marcosaraujocl.github.io/projeto-aplicado-II-classificacoes-avaliacoes/Docs/)
 
+**Vídeo da apresentação:** [Assistir no YouTube](https://youtu.be/EG7y2NOoLKQ)
+
 ---
 
 ## Estrutura do repositório
@@ -232,7 +267,7 @@ projeto-aplicado-II-classificacoes-avaliacoes/
 └── README.md
 ```
 
-A pasta `Docs` reúne os materiais documentais e a apresentação HTML. Ela será utilizada como fonte de publicação do GitHub Pages após a configuração correspondente.
+A pasta `Docs` reúne os materiais documentais e a apresentação HTML, publicada por meio do GitHub Pages (fonte: branch `main`, pasta raiz). O endereço da apresentação é `.../Docs/`, pois o arquivo `index.html` está dentro dessa pasta.
 
 ---
 
@@ -274,7 +309,7 @@ O relatório técnico apresenta o desenvolvimento completo do projeto, incluindo
 - Modelo de negócios;
 - Storytelling.
 
-**Arquivo:** `Docs/Relatório_Técnico_GameInsight.pdf`
+**Arquivo:** [`Docs/Relatório_Técnico_GameInsight.pdf`](Docs/Relat%C3%B3rio_T%C3%A9cnico_GameInsight.pdf)
 
 ---
 
@@ -299,6 +334,6 @@ A GameInsight Studios é fictícia. As avaliações públicas da Steam foram uti
 
 ---
 
-**Projeto Aplicado II — 2026**  
+**Projeto Aplicado II — Banco de Dados — 2026**  
 **Grupo Hash | GameInsight Studios**  
 Universidade Presbiteriana Mackenzie
